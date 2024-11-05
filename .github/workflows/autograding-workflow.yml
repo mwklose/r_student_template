@@ -15,10 +15,9 @@ jobs:
       with:
         r-version: '4.2'
 
-    # - name: Install Dependencies
-    #   uses: r-lib/actions/setup-r-dependencies@v2
-    #   with: 
-    #     extra-packages: any::testthat
+    - name: Install Dependencies
+      run: |
+          Rscript -e 'install.packages("testthat")'
 
     - name: Run Tests
       run: |
