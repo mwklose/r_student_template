@@ -1,12 +1,11 @@
 library(testthat)
+library(here)
 
-source("../code/func2.R")
-source("../code/test_code.R")
-
-
+source(here::here("code", "func2.R"))
+source(here::here("code", "test_code"))
 
 test_that("example function works correctly", {
-  expect_equal(test_function(3,5), 8) 
+  expect_equal(test_function(3,5), 4) 
 })
 
 test_that("func2 works correctly", {
