@@ -1,9 +1,7 @@
 library(testthat)
 
-print(getwd())
-
-source("code/func2.R")
-source("code/test_code.R")
+source("../code/func2.R")
+source("../code/test_code.R")
 
 
 
