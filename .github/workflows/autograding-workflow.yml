@@ -27,7 +27,6 @@ jobs:
       uses: classroom-resources/autograding-command-grader@v1
       with: 
           test-name: ExampleTests
-          setup-command: Rscript -e 'install.packages("testthat"); install.packages("here")'
           command: Rscript -e 'testthat::test_dir("tests", reporter="summary")'
           timeout: 10
           max-score: 100
