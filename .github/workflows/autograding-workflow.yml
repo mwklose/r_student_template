@@ -15,7 +15,10 @@ jobs:
       with:
         r-version: '4.2'
         use-public-rspm: true
-        extra-repositories: "testthat"
+
+    - name: Install Packages
+      run: |
+        Rscript -e 'install.packages("testthat")'
 
     - name: Run Tests
       run: |
