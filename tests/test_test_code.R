@@ -1,7 +1,7 @@
 library(testthat)
 
-filenames = list.files("code", pattern = "\\.R$", full.names = TRUE)
-lapply(filenames, source)
+source("code/func2.R")
+source("code/test_code.R")
 
 test_that("example function works correctly", {
   expect_equal(test_function(3,5), 8) 
