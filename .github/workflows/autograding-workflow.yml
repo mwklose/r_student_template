@@ -3,8 +3,9 @@ name: Autograding
 on: [push, pull_request]
 
 jobs:
-  autograding:
+  run-autograding-r-tests:
     runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
 
     steps:
     - name: Checkout code
@@ -20,7 +21,20 @@ jobs:
       run: |
         Rscript -e 'install.packages("testthat"); install.packages("here")'
 
-    - name: Run Tests
-      run: |
-        # Run tests and output results in a format GitHub Classroom can read
-        Rscript -e 'testthat::test_dir("tests", reporter="summary")'
+
+    - name: ExampleTests
+      id: exampletests
+      uses: classroom-resources/autograding-command-grader@v1
+      with: 
+          test-name: ExampleTests
+          setup-command: Rscript -e 'install.packages("testthat"); install.packages("here")'
+          command: Rscript -e 'testthat::test_dir("tests", reporter="summary")'
+          timeout: 10
+          max-score: 100
+
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        EXAMPLETESTS_RESULTS: ${{ steps.exampletests.outputs.result }}
+      with:
+        runners: exampletests
