@@ -15,9 +15,12 @@ jobs:
       with:
         r-version: '4.2'
 
+    
+
     - name: Install Dependencies
-      run: |
-        Rscript -e 'install.packages("testthat"); install.packages("tidyverse")'
+      uses: r-lib/actions/setup-r-dependencies@v2
+      with: 
+        extra-packages: any::testthat
 
     - name: Run Tests
       run: |
